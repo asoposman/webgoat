@@ -9,7 +9,22 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: echo "This is a test step 2"
+      - run: echo "This is a test step"
+
+
+  odc-backend:
+    machine: true
+    steps:
+      - checkout
+
+      - run:
+          command: docker run -v $(pwd):/src -v $(pwd)/data:/usr/share/dependency-check/data -v $(pwd)/reports:/report --rm owasp/dependency-check --scan /src --format "CSV" --project "Webgoat" --failOnCVSS 8 --out /report
+          when: on_fail             # Even if the job fails, continue to the next stages
+
+      - store_artifacts:
+          path: reports/dependency-check-report.json
+          destination: depcheck-artifact
+          when: always
 
 workflows:
   version: 2
@@ -19,3 +34,6 @@ workflows:
       - test:
           requires:
             - build
+      - odc-backend:
+          requires:
+            - test
