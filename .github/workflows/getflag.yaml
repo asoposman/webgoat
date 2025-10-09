@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Az CLI login
-        uses: azure/login@v2
+        uses: azure/login@v1
         with:
           client-id: "320904b6-ade4-47ea-98b1-b40431a00b00"
-          tenant-id: "azure.training.hacktricks.xyz"
+          tenant-id: "fdd066e1-ee37-49bc-b08f-d0e152119b04"
           subscription-id: "764cc28a-0e45-4d5b-aca7-a1baf16a334b"
           enable-AzPSSession: true
       - name: Download flag
