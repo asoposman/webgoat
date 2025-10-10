@@ -11,7 +11,7 @@ jobs:
       - name: Az CLI login
         uses: azure/login@v1
         with:
-          client-id: "320904b6-ade4-47ea-98b1-b40431a00b00"
+          client-id: "a74cb5d2-4e28-4216-bb35-4cedf6ee9475"
           tenant-id: "azure.training.hacktricks.xyz"
           subscription-id: "764cc28a-0e45-4d5b-aca7-a1baf16a334b"
           enable-AzPSSession: true
