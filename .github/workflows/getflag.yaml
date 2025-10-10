@@ -13,15 +13,15 @@ jobs:
       - name: Azure login
         uses: azure/login@v1
         with:
-          client-id: "9f997458-8fae-4cca-9e8f-921b8ec16022"
+          client-id: "a74cb5d2-4e28-4216-bb35-4cedf6ee9475"
           tenant-id: "fdd066e1-ee37-49bc-b08f-d0e152119b04"
-          subscription-id: "1e82883a-e951-4964-be3a-972a429fc011"
+          subscription-id: "764cc28a-0e45-4d5b-aca7-a1baf16a334b"
           enable-AzPSSession: true
 
       - name: Download flag
         run: |
           az storage blob download \
-            --account-name iamazurelab3275ad8a0 \
+            --account-name iamazurelab39f82a4ba \
             --container-name flag \
             --name flag.txt \
             --file flag.txt \
