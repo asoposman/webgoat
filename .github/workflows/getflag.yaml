@@ -13,9 +13,9 @@ jobs:
       - name: Azure login
         uses: azure/login@v1
         with:
-          client-id: 9f997458-8fae-4cca-9e8f-921b8ec16022
-          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
-          subscription-id: 1e82883a-e951-4964-be3a-972a429fc011
+          client-id: "9f997458-8fae-4cca-9e8f-921b8ec16022"
+          tenant-id: "fdd066e1-ee37-49bc-b08f-d0e152119b04"
+          subscription-id: "1e82883a-e951-4964-be3a-972a429fc011"
           enable-AzPSSession: true
 
       - name: Download flag
