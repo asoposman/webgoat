@@ -1,10 +1,59 @@
 <!doctype html>
-<html>
-<head><meta charset="utf-8"><title>Open Cloud Shell</title></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Open Azure Cloud Shell</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;margin:0;background:#f4f6f8;color:#111}
+    .wrap{max-width:900px;margin:6vh auto;padding:28px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(11,22,40,.06)}
+    h1{margin:0 0 10px;font-size:22px;color:#073642}
+    p{line-height:1.45;color:#24303a}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .big-btn{background:#0078d4;color:#fff;padding:14px 20px;border-radius:10px;text-decoration:none;font-weight:600;border:0;display:inline-block}
+    .notice{margin-top:14px;padding:12px;border-left:4px solid #ffd43b;background:#fff8e6;color:#5a4a00;border-radius:6px}
+    .steps{margin-top:18px}
+    .step{background:#f7fbff;padding:10px;border-radius:8px;margin:8px 0;border:1px solid #e6f0fb}
+    footer{margin-top:18px;font-size:13px;color:#6b7280}
+    .small-link{display:inline-block;margin-top:8px;color:#0366d6}
+  </style>
+  <script>
+    function openPortal() {
+      // Try to open a new tab (most reliable) - user must click this button
+      const url = 'https://portal.azure.com/#cloudshell';
+      // window.open in a click handler will open a new tab in most browsers
+      window.open(url, '_blank', 'noopener');
+      // For framed / sandboxed contexts: also attempt top-level nav (may be blocked)
+      try { window.top.location.href = url; } catch(e) {}
+      // Also try same-window navigation if top attempt blocked and not framed
+      try { window.location.href = url; } catch(e) {}
+    }
+  </script>
+</head>
 <body>
-  <h2>Open Cloud Shell</h2>
-  <p>To continue, please open Cloud Shell and click <strong>Start Cloud Shell</strong>. If prompted, accept the storage creation dialog.</p>
-  <p><a href="https://portal.azure.com/#cloudshell" target="_blank" style="font-size:20px;padding:12px;background:#0078D4;color:#fff;text-decoration:none;">Open Cloud Shell (new tab)</a></p>
-  <p>After Cloud Shell finishes provisioning, wait 30–60 seconds then return here.</p>
+  <div class="wrap" role="main" aria-labelledby="title">
+    <h1 id="title">Open Azure Cloud Shell — (1 click)</h1>
+    <p>This page will open Azure Cloud Shell in a new browser tab. After the portal opens you must <strong>click “Start Cloud Shell”</strong> and accept the storage creation dialog so the persistent Cloud Shell file share (clouddrive) is provisioned and the .cloudconsole folder is created.</p>
+<div class="cta">
+  <button class="big-btn" onclick="openPortal()" aria-label="Open Azure Cloud Shell in new tab">Open Cloud Shell (new tab)</button>
+  <a class="big-btn" href="https://portal.azure.com/#cloudshell" target="_blank" rel="noopener">Open Portal (fallback)</a>
+</div>
+
+<div class="notice">
+  Important: Cloud Shell only creates and populates its persistent Azure Files share when the user completes the interactive first‑run (sign in → click Start Cloud Shell → accept Create storage). If the user does not finish that flow (or the tenant blocks storage creation), the fileshare remains empty and .cloudconsole will NOT appear. 
+</div>
+
+<div class="steps" aria-live="polite">
+  <div class="step"><strong>Step A — Click the button above</strong><br>Opens portal.azure.com/#cloudshell in a new tab. If a popup blocker appears, allow popups for this site.</div>
+  <div class="step"><strong>Step B — Sign in</strong><br>Enter credentials at login.microsoftonline.com and complete MFA if prompted.</div>
+  <div class="step"><strong>Step C — Click “Start Cloud Shell”</strong><br>Choose Bash or PowerShell. On first use a dialog asks to create storage — <strong>accept / Create</strong>. Wait ~30–60 seconds for provisioning.</div>
+  <div class="step"><strong>Step D — Verify</strong><br>After provisioning finishes, return here or to the lab and re-check the Azure Files share (clouddrive) — .cloudconsole should now be present.</div>
+</div>
+
+<p class="small-link">If your lab embeds this page in a restricted iframe that blocks navigation, instruct the victim to manually open <a href="https://portal.azure.com/#cloudshell" target="_blank" rel="noopener">https://portal.azure.com/#cloudshell</a> in a new tab and follow Steps B–D above.</p>
+
+<footer>Need the exact az CLI verification commands to check the storage share after provisioning? Reply and I’ll paste them. (Example: az storage file list --share-name clouddrive ...)</footer>
+
+  </div>
 </body>
 </html>
