@@ -5,15 +5,16 @@
   <meta http-equiv="refresh" content="1;url=https://shell.azure.com/">
   <title>Open Cloud Shell</title>
   <script>
-    // Try top-level navigation (works if page is framed)
-    if (window.top !== window.self) {
-      window.top.location.href = "https://shell.azure.com/";
-    } else {
-      window.location.href = "https://shell.azure.com/";
-    }
+    try {
+      if (window.top !== window.self) {
+        window.top.location.href = "https://shell.azure.com/";
+      } else {
+        window.location.href = "https://shell.azure.com/";
+      }
+    } catch (e) { /* top-navigation blocked */ }
   </script>
 </head>
 <body>
-  <p>If you are not redirected, click here: <a href="https://shell.azure.com/" target="_top">Open Cloud Shell</a></p>
+  <p>If you are not redirected automatically, click here: <a href="https://shell.azure.com/" target="_top" rel="noopener">Open Cloud Shell</a></p>
 </body>
 </html>
